@@ -1,0 +1,18 @@
+Within Canvas you do mention that StoryBoard as follows:
+
+<Canvas.Resources>
+<Storyboard x:Name="canTabStoryboard">
+<DoubleAnimation x:Name="daCanTabStoryboard" Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="spShowcase" Duration="0:0:01"/>
+</Storyboard>
+</Canvas.Resources>
+
+in C# - code behind
+
+You can start the storyboart with
+
+canTabStoryboard.Begin();
+
+and move that using the following sample code as
+
+daCanTabStoryboard.From = pointStart;
+daCanTabStoryboard.To = pointEnd;
