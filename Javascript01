@@ -1,0 +1,16 @@
+<!-- Javascript - Iterate based on tag name -->
+function toggle (thechosenone)
+{
+  var toggleMenu = document.getElementsByTagName("div");
+  for(var x=0; x&lt; toggleMenu.length; x++)
+   {
+    var name = toggleMenu[x].getAttribute("name");
+    if (name == 'article')
+    {
+      if (toggleMenu[x].id == thechosenone)
+        toggleMenu[x].style.display = 'block';
+      else
+        toggleMenu[x].style.display = 'none';
+    }
+  }
+}
