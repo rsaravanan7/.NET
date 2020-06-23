@@ -1,0 +1,22 @@
+Find ,Delete Duplicate rows and Find top salary in SQL Server
+-- Find duplicate value
+
+select num,name,count(*)
+from mytable
+group by num,name
+having count(*)>1
+
+-- Delete Duplicate values
+
+delete mytable
+from mytable a
+where
+(
+select count(*) from mytable b where a.num = b.num
+)>1
+
+--Top 3rd Salary
+
+select top 1(sal) from
+(select top 3(sal) from mytable order by (sal) desc)a
+order by (sal)
