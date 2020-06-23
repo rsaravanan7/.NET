@@ -1,0 +1,39 @@
+asp:repeater control, bind images separetly
+For the first demo of our project, I need to show the customer details in a ASP Repeater control. So it’s a first release, boss told that there is no need to work much with the images. So I put a blank image in my Repeater control. After seeing that, he felt uneasy and ask me to bind some default images.
+For other controls in repeater, I bind directly from List Collection. I got struck, how can I bind values only for the images in repeater. I tried for some time and as usual I asked help from my friend Dineshrajan.
+
+He solved that in few minutes. How?
+
+See the code below:
+
+List<string> lstImages = new List<string>();
+
+protected void Page_Load(object sender, EventArgs e)
+{
+ListRepeater.ItemDataBound += new RepeaterItemEventHandler(ListRepeater_ItemDataBound);
+
+lstImages.Add("/App_Themes/Images/ph1.png");
+lstImages.Add("/App_Themes/Images/ph2.png");
+lstImages.Add("/App_Themes/Images/ph3.png");
+lstImages.Add("/App_Themes/Images/ph4.png");
+
+ListRepeater.DataSource = MyWebService.GetList("admin"); // Got the value as list
+ListRepeater.DataBind();
+}
+
+
+void ListRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+{
+if ((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem))
+{
+int post = e.Item.ItemIndex;
+System.Web.UI.HtmlControls.HtmlImage imgPhoto = (System.Web.UI.HtmlControls.HtmlImage)e.Item.FindControl("imgPhoto");// <img id="imgPhoto" runat="server" /> in asp.net
+if (imgPhoto != null)
+{
+string src = lstImages[post];
+imgPhoto.Src = src;
+}
+}
+}
+
+Hats off God 
