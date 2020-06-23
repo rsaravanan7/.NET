@@ -1,0 +1,2 @@
+-- sql update with change in particular string
+update table1 set col1= replace(col1,'exists','replace') where url like 'exists'
